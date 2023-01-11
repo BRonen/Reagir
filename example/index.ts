@@ -1,5 +1,5 @@
-import Reagir from './Reagir'
-import ReagirDOM from './ReagirDOM'
+import Reagir from '../src/Reagir'
+import ReagirDOM from '../src/ReagirDOM'
 import './style.css'
 
 try {
