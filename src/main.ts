@@ -8,7 +8,10 @@ try {
   if (!rootElement)
     throw 'Root container not found'
 
-  const appContent = Reagir.createElement('p', {}, 'Hello world')
+  const name = Reagir.createElement('p', {}, 'Titulo')
+  const age = Reagir.createElement('Age', {}, 'Age')
+  const nestedItems = Reagir.createElement('p', {}, 'Nested', age)
+  const appContent = Reagir.createElement('Asd', {}, name, nestedItems)
 
   ReagirDOM.render(rootElement, appContent)
 } catch(e) {
