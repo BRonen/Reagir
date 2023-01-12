@@ -1,34 +1,24 @@
 import { ReagirNode, ReagirNodeElement } from './Reagir'
 import { isUpperCase } from './utils'
 
-type ReagirParseCallback = (content: ReagirNodeElement[]) => Node
+type ReagirParseCallback = (content: ReagirNodeElement[]) => HTMLElement
 
-const parseMap: Record<string, ReagirParseCallback> = {
+export const parseMap: Record<string, ReagirParseCallback> = {
     'p': content => { 
         const element = document.createElement('p')
-
-        if(!content) return element
-
-        if(typeof content === 'string')
-            element.innerText = content
-        else
-            content.forEach(child => {
-                element.appendChild(ReagirDOM.parseNode(child))
-            })
+        
+        content.forEach(child => {
+            element.appendChild(ReagirDOM.parseNode(child))
+        })
 
         return element
     },
     'div': content => { 
-        const element = document.createElement('p')
+        const element = document.createElement('div')
 
-        if(!content) return element
-
-        if(typeof content === 'string')
-            element.innerText = content
-        else
-            content.forEach(child => {
-                element.appendChild(ReagirDOM.parseNode(child))
-            })
+        content.forEach(child => {
+            element.appendChild(ReagirDOM.parseNode(child))
+        })
 
         return element
     }
@@ -41,11 +31,15 @@ class ReagirDOM {
         element.appendChild(child)
     }
     
-    public static parseNode(element: ReagirNodeElement): Node {
+    public static parseNode(element: ReagirNodeElement): HTMLElement | DocumentFragment {
         // If its a text or null then just renders a text node
-        if(!element || typeof element === 'string')
-            return document.createTextNode(element || '')
-        
+        if(!element || typeof element === 'string') {
+            const node = document.createDocumentFragment()
+
+            node.textContent = element || ''
+
+            return node
+        }
         // If Capitalized tag then its a Reagir Component
         if(isUpperCase(element.tag[0])) {
             const node = document.createDocumentFragment()
