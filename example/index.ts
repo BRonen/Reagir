@@ -14,6 +14,6 @@ try {
   const appContent = Reagir.createElement('Asd', {}, name, nestedItems)
 
   ReagirDOM.render(rootElement, appContent)
-} catch(e) {
+} catch (e) {
   console.error(e)
 }

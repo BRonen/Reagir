@@ -12,7 +12,7 @@ describe('Reagir basic usage', () => {
 
     it('Should create a Paragraph with multiple childs', () => {
         const element = Reagir.createElement('p', {}, 'Hello', 'world')
-    
+
         expect(element.tag).toBe('p')
         expect(element.props).toStrictEqual({})
         expect(element.content).toStrictEqual(['Hello', 'world'])
@@ -26,7 +26,7 @@ describe('Reagir basic usage', () => {
         expect(firstChild.content).toStrictEqual(['Hello'])
 
         const secondChild = Reagir.createElement('b', {}, 'World', '!')
-        
+
         expect(secondChild.tag).toBe('b')
         expect(secondChild.props).toStrictEqual({})
         expect(secondChild.content).toStrictEqual(['World', '!'])
